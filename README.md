@@ -53,4 +53,4 @@ _Please contact Tyler Miller at tylermiller94@gmail.com if you have any question
 * Ruby
 * Sinatra
 
-Copyright (c) 2016 **_{List of contributors or company name}_**
+Copyright (c) 2017 **_{List of contributors or company name}_**

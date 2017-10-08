@@ -9,7 +9,7 @@
       <form action="/stores/<%= @store.id%>/brands/<%= brand.id %>/delete_brand" method="post">
         <input type="hidden" name="_method" value="delete">
 
-        <button type="submit" class="btn btn-xs">x</button>
+        <button class="btn btn-info" type="submit" class="btn btn-xs">x</button>
       </form></li>
     </ul>
   <% end %>
@@ -25,7 +25,7 @@
         <option value="<%= brand.id()%>"> <%= brand.name %> </option>
       <% end %>
     </select>
-    <button type="submit">Add Brand</button>
+    <button class="btn btn-info" type="submit">Add Brand</button>
   </form>
 <% else %>
   <p>There are no brands in this database yet. <a href="/">Click here to add brands to the database.</a></p>
