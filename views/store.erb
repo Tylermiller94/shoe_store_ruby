@@ -1,22 +1,28 @@
-<h1><%store.name %></h1>
-<h3>Store Name: <%= @store.name %></h3>
-<h4>Brands of shoes sold here: </h4>
-<ul>
-  <% @store.brands.each do |b| %>
-    <li><%= brand.name %></li>
-  <% end %>
-</ul>
+<h1>Store Name: <%= @store.name %></h1>
+<br>
+<a class="btn btn-default" href="/store_edit/<%= @store.id %>">Edit Store</a>
 
+<div class="container">
+  <h3>Current brands included in store inventory:</h3>
+  <% if @store.brands.any? %>
+  <div class="well">
+  <p><em>Click on a brand name to learn more or the 'x' button to remove the brand:</em></p>
+    <% @store.brands.each do |brand| %>
+        <div class="row">
+          <div class="col-sm-1">
+            <form action="/stores/<%= @store.id%>/brands/<%= brand.id %>/delete_brand" method="post">
+              <input type="hidden" name="_method" value="delete">
 
-<h1>Add brands to <%= @store.name %></h1>
-<form action="/stores/<%=@store.id %>" method="post">
-  <input type="hidden" name="store_id" value="<%= @store.id() %>">
-  <label for="brands">Brands:</label>
-  <select name="brand_id">
-    <option value=" "></option>
-    <% @list_brands.each() do |b| %>
-      <option value="<%= brand.id() %>"><%= brand.name %></option>
-    <% end %>
-  </select>
-  <button class="btn btn-default" type="submit">Add</button>
-</form>
+              <button type="submit" class="btn btn-danger btn-xs">x</button>
+            </form>
+          </div>
+          <div class="col-sm-11">
+            <a href="/brands/<%= brand.id %>"><%= brand.name %></a> | price: <%= brand.price %>
+          </div>
+        </div>
+        <br>
+      <% end %>
+    <% else %>
+      <p>There are no brands in the inventory yet.</p>
+    <%end%>
+  </div>

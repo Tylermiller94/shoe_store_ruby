@@ -1,14 +1,12 @@
-# frozen_string_literal: true
-source "https://rubygems.org"
+source("https://rubygems.org")
+# ruby "2.2.2"
 
-gem 'sinatra-contrib', :require => 'sinatra/reloader'
-gem 'sinatra-activerecord'
-gem 'rake'
-gem 'pg'
-gem 'sinatra'
-
-group(:test) do
-  gem 'rspec'
-  gem 'capybara', '~> 2.8'
-  gem 'pry'
-end
+gem("sinatra-contrib", :require => "sinatra/reloader")
+gem("sinatra-activerecord")
+gem("rake")
+gem("pg")
+gem("sinatra")
+gem("pry")
+gem("rspec")
+gem("capybara")
+gem("shoulda-matchers", "~> 2.0")

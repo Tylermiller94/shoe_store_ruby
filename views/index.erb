@@ -1,1 +1,23 @@
-<h1>shoe store</h1>
+<h1>Shoe Store & Brand Database</h1>
+
+<div class="container">
+  <h2>Current shoe stores included in database:</h2>
+  <h4>Click on a store name to access their inventory:</h4>
+  <% if @stores.any? %>
+    <% @stores.each do |store| %>
+      <ul>
+        <li><a href="/stores/<%= store.id %>"><%= store.name %></a></li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p>There are no stores in the database yet.</p>
+  <%end%>
+
+  <h4>Add shoe store to the database:</h4>
+  <form action="/stores" method="post">
+    <label for="new_store">Add a Store Name:</label>
+    <input type="text" name="new_store">
+    <br>
+    <button class="btn btn-info" type="submit">Add Store</button>
+  </form>
+</div>
