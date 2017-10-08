@@ -11,7 +11,6 @@ get("/") do
   @brands = Brand.all()
   erb(:index)
 end
-#stores
 
 post("/stores") do
   name = params.fetch("new_store")
