@@ -1,28 +1,25 @@
 <h1>Store Name: <%= @store.name %></h1>
-<br>
-<a class="btn btn-default" href="/store_edit/<%= @store.id %>">Edit Store</a>
 
-<div class="container">
-  <h3>Current brands included in store inventory:</h3>
-  <% if @store.brands.any? %>
-  <div class="well">
-  <p><em>Click on a brand name to learn more or the 'x' button to remove the brand:</em></p>
-    <% @store.brands.each do |brand| %>
-        <div class="row">
-          <div class="col-sm-1">
-            <form action="/stores/<%= @store.id%>/brands/<%= brand.id %>/delete_brand" method="post">
-              <input type="hidden" name="_method" value="delete">
+<h2>Current brands included in store inventory:</h2>
+<h5>Click on brand names to learn more:</h5>
+<% if @store.brands.any? %>
+  <% @store.brands.each do |brand| %>
+    <ul>
+      <li><a href="/brands/<%= brand.id %>"><%= brand.name %></a> | price: <%= brand.price %></li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>There are no brands in the inventory yet.</p>
+<%end%>
 
-              <button type="submit" class="btn btn-danger btn-xs">x</button>
-            </form>
-          </div>
-          <div class="col-sm-11">
-            <a href="/brands/<%= brand.id %>"><%= brand.name %></a> | price: <%= brand.price %>
-          </div>
-        </div>
-        <br>
-      <% end %>
-    <% else %>
-      <p>There are no brands in the inventory yet.</p>
-    <%end%>
-  </div>
+<form action="/stores/<%= @store.id %>/brands" method="post">
+  <label for="new_brand">Add a Brand Name:</label>
+  <input type="text" name="new_brand">
+
+  <label for="new_brand_price">Add a Brand Price:</label>
+  <input type="text" name="new_brand_price">
+
+  <button type="submit">Add Brand</button>
+</form>
+
+<a href="/store_edit/<%= @store.id %>">Click here to edit this store.</a>
