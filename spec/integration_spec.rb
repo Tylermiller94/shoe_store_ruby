@@ -58,3 +58,40 @@ describe('edit store path', {:type => :feature}) do
     expect(page).to have_content('Nordstrom rack')
   end
 end
+
+describe('delete store path', {:type => :feature}) do
+  it('delete a store') do
+    visit('/')
+    fill_in('new_store', :with => 'nordstrom')
+    click_button('Add Store')
+    click_link('Nordstrom')
+    click_link('Click here to edit this store.')
+    click_button('Delete Store')
+    expect(page).to have_content('There are no stores in the database yet.')
+  end
+end
+
+describe('edit brand path', {:type => :feature}) do
+  it('update a brand name') do
+    visit('/')
+    fill_in('new_brand', :with => 'nike')
+    click_button('Add Brand')
+    click_link('Nike')
+    click_link('Click here to edit this brand.')
+    fill_in('new_brand_name', :with => 'nike pro')
+    click_button('Update Brand')
+    expect(page).to have_content('Nike pro')
+  end
+end
+
+describe('delete brand path', {:type => :feature}) do
+  it('delete a brand') do
+    visit('/')
+    fill_in('new_brand', :with => 'nike')
+    click_button('Add Brand')
+    click_link('Nike')
+    click_link('Click here to edit this brand.')
+    click_button('Delete Brand')
+    expect(page).to have_content('There are no brands in the database yet.')
+  end
+end
