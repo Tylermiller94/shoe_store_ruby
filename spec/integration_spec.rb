@@ -26,7 +26,35 @@ describe('the add brand path', {:type => :feature}) do
   it('has a field that will allow users to create a new brand to add to the brand list') do
     visit('/')
     fill_in('new_brand', :with => 'nike')
+    fill_in('new_brand_price', :with => '20')
     click_button('Add Brand')
     expect(page).to have_content('Nike')
+  end
+end
+
+describe('the add brand to store path', {:type => :feature}) do
+  it('will add brands to a store') do
+    visit('/')
+    fill_in('new_store', :with => 'nordstrom')
+    click_button('Add Store')
+    fill_in('new_brand', :with => 'nike')
+    fill_in('new_brand_price', :with => '20')
+    click_button('Add Brand')
+    click_link('Nordstrom')
+    click_button('Add Brand')
+    expect(page).to have_content('Click on brand names to learn more:')
+  end
+end
+
+describe('edit store path', {:type => :feature}) do
+  it('update a store name') do
+    visit('/')
+    fill_in('new_store', :with => 'nordstrom')
+    click_button('Add Store')
+    click_link('Nordstrom')
+    click_link('Click here to edit this store.')
+    fill_in('new_store_name', :with => 'nordstrom rack')
+    click_button('Update Store')
+    expect(page).to have_content('Nordstrom rack')
   end
 end
