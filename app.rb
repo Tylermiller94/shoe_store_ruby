@@ -12,6 +12,7 @@ get("/") do
   erb(:index)
 end
 #stores
+
 post("/stores") do
   name = params.fetch("new_store")
   @store = Store.new({:name => name})
@@ -44,6 +45,13 @@ post("/stores/:id/brands") do
   brand_id = params.fetch("brand_id").to_i
   @brand = Brand.find(brand_id)
   @brand.stores.push(@store)
+  redirect("/stores/#{@store.id}")
+end
+
+delete("/stores/:id/delete_brand") do
+  @store = Store.find(params.fetch("id").to_i)
+  @brand = Brand.find(params.fetch("id").to_i)
+  @store.brands.destroy(@brand)
   redirect("/stores/#{@store.id}")
 end
 
