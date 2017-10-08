@@ -22,11 +22,6 @@ post("/stores") do
   end
 end
 
-get("/brands") do
-  @brands = Brand.all()
-  erb(:brands)
-end
-
 post("/brands") do
   name = params.fetch("new_brand")
   price = params.fetch("new_brand_price")

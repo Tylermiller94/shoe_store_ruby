@@ -1,7 +1,7 @@
 <h1>Store Name: <%= @store.name %></h1>
 
 <h2>Current brands included in store inventory:</h2>
-<h5>Click on brand names to learn more:</h5>
+<h4>Click on brand names to learn more:</h4>
 <% if @store.brands.any? %>
   <% @store.brands.each do |brand| %>
     <ul>
